@@ -2,7 +2,8 @@ name: build-gitleaks-image
 
 on: 
   push: 
-    paths: "dev-sec-ops/base-images/gitleaks.dockerfile"
+    paths: 
+      - "dev-sec-ops/base-images/gitleaks.dockerfile"
 
 jobs:
   build-gitleaks-image:
@@ -21,4 +22,4 @@ jobs:
           password: ${{ secrets.DOCKER_REGISTRY_PAT }}  
 
       - name: Push gitleaks image
-        run: docker push ${{ secrets.DOCKER_REGISTRY_USER }}/gitleaks:latest 
+        run: docker push ${{ secrets.DOCKER_REGISTRY_USER }}/gitleaks:latest
