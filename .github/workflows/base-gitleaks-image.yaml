@@ -21,4 +21,4 @@ jobs:
           password: ${{ secrets.DOCKER_REGISTRY_PAT }}  
 
       - name: Push gitleaks image
-        run: docker push ${{ secrets.DOCKER_REGISTRY_USER }}/gitleaks:latest  Run docker build -t /gitleaks:latest -f dev-sec-ops/base-images/gitleaks.dockerfile .
+        run: docker push ${{ secrets.DOCKER_REGISTRY_USER }}/gitleaks:latest 
