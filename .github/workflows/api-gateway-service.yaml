@@ -1,4 +1,4 @@
-name: api-gateway:CI
+name: api-gateway-CI
 
 on:
   push:
@@ -19,12 +19,9 @@ jobs:
           username: ${{ secrets.DOCKER_REGISTRY_USER }}
           password: ${{ secrets.DOCKER_REGISTRY_PAT }} 
 
-
       - name: Build Docker Image for api-gateway
-        run: 
-          docker build -t ${{ secrets.DOCKER_REGISTRY_USER}}/api-gateway:latest -f dockerfile .
+        run: docker build -t ${{ secrets.DOCKER_REGISTRY_USER }}/api-gateway:latest -f dockerfile .
         working-directory: hospital-management/api-gateway
 
       - name: Push Docker Image for api-gateway
-        run: 
-          docker push ${{secrets.DOCKER_REGISTRY_USER}}/api-gateway:latest 
+        run: docker push ${{ secrets.DOCKER_REGISTRY_USER }}/api-gateway:latest
