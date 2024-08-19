@@ -1,0 +1,11 @@
+# Use an appropriate base image from Docker Hub
+FROM openjdk:17-jdk
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy the application JAR file into the container
+COPY target/hospital_management_project-0.0.1-SNAPSHOT.jar /app/patient-service.jar
+
+# Start the application
+CMD ["java", "-jar", "/app/patient-service.jar"]
