@@ -1,9 +1,9 @@
-name: base-image-build
+name: Base Image build
 
-on:
-  push: 
-    paths: "dev-sec-ops/base-images/**"
-
+on: 
+  push:
+    paths:
+      - dev-sec-opps/base-images/**
 
 jobs:
   build-base-images:
@@ -11,16 +11,15 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Build base image
-        run: docker build -t ${{secrets.DOCKER_REGISTRY_USER}}/license-finder:latest -f dev-sec-ops/base-images/license-finder.dockerfile .
       
-      - name: Login into Docker Registry
-        uses: docker/login-action@v2
-        with:
-          username: ${{secrets.DOCKER_REGISTRY_USER}}
-          password: ${{secrets.DOCKER_REGISTRY_PAT}}
+      - name: Build image
+        run: docker build -t ${{ secrets.DOCKER_REGISTRY_USER }}/license-finder:latest -f dev-sec-opps/base-images/liencense-finder.dockerfile .
 
-      - name: Docker push
-        run: docker push ${{secrets.DOCKER_REGISTRY_USER}}/license-finder:latest  
-         
+      - name: Log in to Github Docker Registry
+        uses: docker/login-action@v2
+        with: 
+          username: ${{ secrets.DOCKER_REGISTRY_USER }}
+          password: ${{ secrets.DOCKER_REGISTRY_PAT }} 
+
+      - name: Push image
+        run: docker push ${{ secrets.DOCKER_REGISTRY_USER }}/license-finder:latest 
